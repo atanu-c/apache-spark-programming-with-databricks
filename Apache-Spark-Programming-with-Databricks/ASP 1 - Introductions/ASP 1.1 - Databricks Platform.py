@@ -199,6 +199,10 @@ display(files)
 
 # COMMAND ----------
 
+events_path
+
+# COMMAND ----------
+
 files = dbutils.fs.ls(events_path)
 display(files)
 

@@ -35,8 +35,7 @@
 
 # COMMAND ----------
 
-# TODO
-<FILL_IN>
+# MAGIC %fs ls /databricks-datasets
 
 # COMMAND ----------
 
@@ -48,8 +47,7 @@
 
 # COMMAND ----------
 
-# TODO
-files = dbutils.FILL_IN
+files = dbutils.fs.ls("/databricks-datasets")
 display(files)
 
 # COMMAND ----------
@@ -65,7 +63,18 @@ display(files)
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC -- TODO
+# MAGIC CREATE TABLE IF NOT EXISTS tbl_users
+# MAGIC USING DELTA
+# MAGIC OPTIONS (path = "${c.users_path}");
+# MAGIC CREATE TABLE IF NOT EXISTS tbl_sales
+# MAGIC USING DELTA
+# MAGIC OPTIONS (path = "${c.sales_path}");
+# MAGIC CREATE TABLE IF NOT EXISTS tbl_products
+# MAGIC USING DELTA
+# MAGIC OPTIONS (path = "${c.products_path}");
+# MAGIC CREATE TABLE IF NOT EXISTS tbl_events
+# MAGIC USING DELTA
+# MAGIC OPTIONS (path = "${c.events_path}");
 
 # COMMAND ----------
 
@@ -101,7 +110,7 @@ display(files)
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC -- TODO
+# MAGIC SELECT distinct(name) FROM tbl_products
 
 # COMMAND ----------
 
@@ -127,7 +136,8 @@ display(files)
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC -- TODO
+# MAGIC select round(avg(purchase_revenue_in_usd),2) as avg_purchase_revenue_in_usd
+# MAGIC from tbl_sales
 
 # COMMAND ----------
 
@@ -156,7 +166,7 @@ display(files)
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC -- TODO
+# MAGIC SELECT distinct(event_name) FROM tbl_events
 
 # COMMAND ----------
 
