@@ -58,8 +58,7 @@ def label_day_of_week(day: str) -> str:
 
 # COMMAND ----------
 
-# TODO
-label_dow_udf = FILL_IN
+label_dow_udf = udf(label_day_of_week)
 
 # COMMAND ----------
 
@@ -70,8 +69,8 @@ label_dow_udf = FILL_IN
 
 # COMMAND ----------
 
-# TODO
-final_df = FILL_IN
+# from pyspark.sql.functions import col
+final_df = df.withColumn("day", label_dow_udf(col("day"))).orderBy("day")
 
 display(final_df)
 
